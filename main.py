@@ -13,16 +13,20 @@ def init(): #initializes array with last 100 image urls
 
 def ran_elem(t):	#returns a random element from t
     random.seed()
-    return t[random.randint(0,len(t)-1)]
+    elem = t[random.randint(0,len(t)-1)]
+    print(elem)
+    return elem
 
 app = Flask(__name__)
 urls = init () #initialize
 
 
 @app.route('/')
-
 def hello_world():
     return render_template('index.html', imgurl = ran_elem(urls)  )
+@app.route('/nexturl')
+def nexturl():
+    return ran_elem(urls)
 
 if __name__ == '__main__':
     app.run()
