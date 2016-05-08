@@ -5,9 +5,12 @@ document.addEventListener('keydown', function(event) {
        xhr.open("get", "/nexturl", true);
        xhr.send();
        xhr.responseType = 'text';
-       console.log(xhr.response);
-       console.log(xhr.responseText);
-       console.log("test");
+       xhr.onload = function(){
+	       console.log(xhr.response);
+	       console.log("success");
+		var pic = document.getElementById("moepicture");
+		pic.src = xhr.response;
+		}
 }
     else if(event.keyCode == 39) {
         alert('Right was pressed');
